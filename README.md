@@ -124,6 +124,14 @@ Our experimental pipeline is designed to validate three core hypotheses:
 
 ---
 
+## Empirical Results
+
+We benchmarked SCSB against **Standard Bagging (Uniform Weights)**, **Lasso-Pruned Bagging (L1 Regularization)**, and **XGBoost** on representative datasets. SCSB achieves high compression ratios ranging from **33% to 96%** and linear inference speedups, while preserving or enhancing generalization accuracy and Expected Calibration Error (ECE).
+
+For complete, detailed results across all classification and regression configurations, see the [Detailed Phase 2 Benchmark Report](benchmarks/benchmark_report.md).
+
+---
+
 ## Project Structure
 
 ```text

@@ -150,6 +150,14 @@ simplex-constrained-sparse-bagging/
 
 ---
 
+## Development Guidelines
+
+To maintain a clean and manageable repository, all development must adhere to the following rules:
+* **Branching Strategy**: Do not commit directly to the `main` branch. All new features, experimental pipeline tasks, or bug fixes must be implemented on dedicated feature branches (e.g., `feature/branch-name` or `bugfix/branch-name`).
+* **Active Branch Limit**: To avoid merge conflicts and ease coordination, a maximum of **2-3 active development branches** are allowed concurrently. Merged or stale branches should be deleted promptly.
+
+---
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

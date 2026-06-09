@@ -27,7 +27,8 @@ SCSB is **completely model-agnostic** and can be applied post-training to any ba
 Let $I_{i,j}$ be the Out-Of-Bag (OOB) indicator variable for sample $i$ and base model $j$:
 
 $$
-I_{i,j} = \begin{cases} 1 & \text{if sample } i \text{ is Out-of-Bag for model } j \\ 0 & \text{otherwise} \end{cases}
+I_{i,j} = \begin{cases} 1 & \text{if sample } i \text{ is Out-of-Bag for model } j \\ 
+0 & \text{otherwise} \end{cases}
 $$
 
 The weighted OOB prediction of the ensemble for sample $i$ is:

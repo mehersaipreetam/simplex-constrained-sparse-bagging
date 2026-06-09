@@ -1,4 +1,4 @@
-# Phase 2 Experimental Pipeline Benchmark Report
+# Experimental Pipeline Benchmark Report
 
 This report presents comprehensive benchmark results comparing **Simplex-Constrained Sparse Bagging (SCSB)** to three baselines: **Standard Bagging (Uniform Weights)**, **Lasso-Pruned Bagging (L1 Regularization)**, and **XGBoost**.
 

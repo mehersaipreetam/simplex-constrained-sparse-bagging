@@ -58,6 +58,7 @@ venv.bak/
 *.joblib
 experiments/plots/
 experiments/benchmark_results.json
+experiments/phase2_benchmark_report.md
 
 # OS
 .DS_Store

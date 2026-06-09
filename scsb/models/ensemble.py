@@ -270,6 +270,11 @@ class SCSBClassifier(_BaseSCSB, ClassifierMixin):
             else:
                 probs += weight * est_probs
 
+        # Ensure probabilities are bounded in [0, 1] and sum to 1
+        probs = np.clip(probs, 0.0, 1.0)
+        sum_probs = np.sum(probs, axis=1, keepdims=True)
+        sum_probs = np.where(sum_probs == 0, 1e-15, sum_probs)
+        probs = probs / sum_probs
         return probs
 
     def predict(self, X):

@@ -56,6 +56,8 @@ venv.bak/
 *.tar
 *.pkl
 *.joblib
+experiments/plots/
+experiments/benchmark_results.json
 
 # OS
 .DS_Store

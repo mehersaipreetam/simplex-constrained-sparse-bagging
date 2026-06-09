@@ -6,7 +6,7 @@
 
 Simplex-Constrained Sparse Bagging (**SCSB**) is a mathematically rigorous post-training model compression and calibration framework for bagging ensembles. 
 
-By transitioning from a naive **Uniform Prior** (where every base estimator has equal voting power, $w_i = 1/N$) to an optimal, **Sparse Posterior** distribution over the probability simplex ($w_i \ge 0, \sum w_i = 1$), SCSB significantly compresses ensemble size and improves probability calibration while preserving or enhancing generalization performance.
+By transitioning from a naive **Uniform Prior** (where every base estimator has equal voting power, $w_i = 1/N$) to an optimal, **Sparse Posterior** distribution over the probability simplex ($w_i \ge 0, \sum_{i=1}^N w_i = 1$), SCSB significantly compresses ensemble size and improves probability calibration while preserving or enhancing generalization performance.
 
 SCSB is **completely model-agnostic** and can be applied post-training to any bagging ensemble (including Random Forests, Bagged SVMs, Bagged Neural Networks, and Bagged KNNs) that utilizes bootstrap sampling.
 
@@ -25,13 +25,19 @@ SCSB is **completely model-agnostic** and can be applied post-training to any ba
 ## Mathematical Formulation
 
 Let $I_{i,j}$ be the Out-Of-Bag (OOB) indicator variable for sample $i$ and base model $j$:
-$$I_{i,j} = \begin{cases} 1 & \text{if sample } i \text{ is Out-of-Bag for model } j \\ 0 & \text{otherwise} \end{cases}$$
+$$
+I_{i,j} = \begin{cases} 1 & \text{if sample } i \text{ is Out-of-Bag for model } j \\ 0 & \text{otherwise} \end{cases}
+$$
 
 The weighted OOB prediction of the ensemble for sample $i$ is:
-$$\hat{y}_i^{OOB}(w) = \frac{\sum_{j=1}^N w_j I_{i,j} f_j(x_i)}{\sum_{j=1}^N w_j I_{i,j}}$$
+$$
+\hat{y}_i^{OOB}(w) = \frac{\sum_{j=1}^N w_j I_{i,j} f_j(x_i)}{\sum_{j=1}^N w_j I_{i,j}}
+$$
 
 SCSB solves the following constrained optimization problem:
-$$\min_{w} \frac{1}{M} \sum_{i=1}^M \text{Loss}\left(y_i, \hat{y}_i^{OOB}(w)\right) + \lambda R(w)$$
+$$
+\min_{w} \frac{1}{M} \sum_{i=1}^M \text{Loss}\left(y_i, \hat{y}_i^{OOB}(w)\right) + \lambda R(w)
+$$
 
 **Subject to the Simplex Constraints:**
 1. $w_j \ge 0 \quad \forall j \in \{1, \dots, N\}$ (Non-negativity)
@@ -39,7 +45,9 @@ $$\min_{w} \frac{1}{M} \sum_{i=1}^M \text{Loss}\left(y_i, \hat{y}_i^{OOB}(w)\rig
 
 ### Concave Sparsity-Inducing Penalty $R(w)$
 Since the $L_1$ norm is constant (exactly $1$) on the probability simplex, standard Lasso-style regularization fails to induce sparsity. SCSB resolves this paradox by employing a **concave quadratic penalty** (negative $L_2$ norm) that drives weights to the boundaries of the simplex:
-$$R(w) = -\|w\|_2^2 = -\sum_{j=1}^N w_j^2$$
+$$
+R(w) = -\|w\|_2^2 = -\sum_{j=1}^N w_j^2
+$$
 
 ---
 
@@ -49,7 +57,7 @@ $$R(w) = -\|w\|_2^2 = -\sum_{j=1}^N w_j^2$$
 
 Clone the repository and install using [uv](https://docs.astral.sh/uv/):
 ```bash
-git clone https://github.com/your-username/simplex-constrained-sparse-bagging.git
+git clone https://github.com/mehersaipreetam/simplex-constrained-sparse-bagging.git
 cd simplex-constrained-sparse-bagging
 uv venv && uv pip install -e .
 ```

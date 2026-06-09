@@ -47,10 +47,15 @@ $$R(w) = -\|w\|_2^2 = -\sum_{j=1}^N w_j^2$$
 
 ### Installation
 
-Clone the repository and install it in editable mode:
+Clone the repository and install using [uv](https://docs.astral.sh/uv/):
 ```bash
 git clone https://github.com/your-username/simplex-constrained-sparse-bagging.git
 cd simplex-constrained-sparse-bagging
+uv venv && uv pip install -e .
+```
+
+Or with pip:
+```bash
 pip install -e .
 ```
 
@@ -74,7 +79,7 @@ base_ensemble = BaggingClassifier(
     estimator=DecisionTreeClassifier(),
     n_estimators=100,
     random_state=42,
-    oob_score=True  # Required to access OOB predictions/indicators
+    oob_score=True,
 )
 base_ensemble.fit(X_train, y_train)
 
@@ -92,7 +97,7 @@ probs = scsb_model.predict_proba(X_test)
 # Check compression ratio
 print(f"Original estimators: {len(base_ensemble.estimators_)}")
 print(f"Active estimators after SCSB: {scsb_model.n_active_estimators_}")
-print(f"Compression ratio: {scsb_model.compression_ratio_:.2%}")
+print(f"Estimators pruned: {scsb_model.compression_ratio_:.2%}")
 ```
 
 ---
@@ -117,12 +122,17 @@ simplex-constrained-sparse-bagging/
 │       ├── __init__.py
 │       └── ensemble.py       # SCSBClassifier & SCSBRegressor
 │
-├── benchmarks/               # Datasets and benchmark configurations
-├── experiments/              # Benchmark runner and Pareto plots
+├── tests/                    # Test suite (pytest)
+│   └── test_ensemble.py
+│
+├── benchmarks/               # Benchmark configurations (Phase 2)
+├── experiments/              # Experiment scripts (Phase 2)
 ├── paper/                    # Paper drafting files (Markdown / LaTeX)
-├── notebooks/                # Exploratory notebooks
-├── README.md                 # Production readme
-└── .gitignore                # Version control ignores (local configs)
+│
+├── pyproject.toml            # Package configuration and dependencies
+├── LICENSE                   # MIT License
+├── README.md                 # This file
+└── .gitignore
 ```
 
 ---

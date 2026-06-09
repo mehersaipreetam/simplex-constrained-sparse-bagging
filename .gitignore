@@ -1,6 +1,7 @@
 # Agent files (keep local, do not commit/publish)
 TASKS.md
 AGENT_WORKFLOW.md
+PAPER_WRITING_GUIDELINES.md
 
 # Python
 __pycache__/
@@ -62,3 +63,5 @@ experiments/benchmark_results.json
 # OS
 .DS_Store
 Thumbs.db
+
+paper/

@@ -124,6 +124,14 @@ Our experimental pipeline is designed to validate three core hypotheses:
 
 ---
 
+## Empirical Results
+
+We benchmarked SCSB against **Standard Bagging (Uniform Weights)**, **Lasso-Pruned Bagging (L1 Regularization)**, and **XGBoost** on representative datasets. SCSB achieves high compression ratios ranging from **33% to 96%** and linear inference speedups, while preserving or enhancing generalization accuracy and Expected Calibration Error (ECE).
+
+For complete, detailed results across all classification and regression configurations, see the [Detailed Benchmark Report](benchmarks/benchmark_report.md).
+
+---
+
 ## Project Structure
 
 ```text
@@ -147,6 +155,14 @@ simplex-constrained-sparse-bagging/
 ├── README.md                 # This file
 └── .gitignore
 ```
+
+---
+
+## Development Guidelines
+
+To maintain a clean and manageable repository, all development must adhere to the following rules:
+* **Branching Strategy**: Do not commit directly to the `main` branch. All new features, experimental pipeline tasks, or bug fixes must be implemented on dedicated feature branches (e.g., `feature/branch-name` or `bugfix/branch-name`).
+* **Active Branch Limit**: To avoid merge conflicts and ease coordination, a maximum of **2-3 active development branches** are allowed concurrently. Merged or stale branches should be deleted promptly.
 
 ---
 
